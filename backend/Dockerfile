@@ -1,5 +1,10 @@
 FROM php:8.2-apache
 
+
+# Installe PDO MySQL
+RUN docker-php-ext-install pdo pdo_mysql
+
+
 # Active les modules Apache nécessaires
 RUN a2enmod rewrite headers
 
@@ -9,7 +14,9 @@ RUN echo "upload_max_filesize=20M\npost_max_size=20M" > /usr/local/etc/php/conf.
 # Copie les fichiers de l'application
 COPY ./ /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html/upload && \
+
+# Crée un dossier upload avec les bonnes permissions
+RUN  chown -R www-data:www-data /var/www/html/upload && \
     chmod -R 755 /var/www/html/upload
 
 

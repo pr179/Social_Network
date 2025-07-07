@@ -1,5 +1,5 @@
 services:
   - type: web
-    name: mon-app-php
+    name: social-network
     env: docker
     dockerfilePath: ./Dockerfile
